@@ -1,16 +1,23 @@
+import PropTypes from 'prop-types';
 import { BtnStyled } from 'components/ContactForm/ContactForm.styled';
+import { ItemStyled, ListStyled } from './ContactList.styled';
 
 const ContactList = ({ contacts, removeContacts }) => {
   return (
-    <ul>
+    <ListStyled>
       {contacts.map(el => (
-        <li key={el.id}>
+        <ItemStyled key={el.id}>
           {el.name}: {el.number}
           <BtnStyled onClick={() => removeContacts(el.id)}>Delete</BtnStyled>
-        </li>
+        </ItemStyled>
       ))}
-    </ul>
+    </ListStyled>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  removeContacts: PropTypes.func,
 };
 
 export default ContactList;

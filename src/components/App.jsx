@@ -1,6 +1,10 @@
 import { Component } from 'react';
 
 import { ContactForm, ContactList, Filter } from 'components';
+import {
+  TitleStyled,
+  SubtitleStyled,
+} from '../components/ContactForm/ContactForm.styled';
 
 export class App extends Component {
   state = {
@@ -31,7 +35,7 @@ export class App extends Component {
   };
 
   showContacts = () => {
-    const { contacts, filter:condition } = this.state;
+    const { contacts, filter: condition } = this.state;
     if (condition === '') return contacts;
     return contacts.filter(el =>
       el.name.toLowerCase().includes(condition.toLowerCase())
@@ -53,12 +57,18 @@ export class App extends Component {
           color: '#010101',
         }}
       >
-        <h1>Phonebook</h1>
-        <ContactForm addContacts={this.addContacts} contacts={this.state.contacts}/>
-        <h2>Contacts</h2>
-        <Filter filter={this.state.filter} filterContacts={this.filterContacts} />
+        <TitleStyled>Phonebook</TitleStyled>
+        <ContactForm
+          addContacts={this.addContacts}
+          contacts={this.state.contacts}
+        />
+        <SubtitleStyled>Contacts</SubtitleStyled>
+        <Filter
+          filter={this.state.filter}
+          filterContacts={this.filterContacts}
+        />
         <ContactList
-          contacts={renderContacts} 
+          contacts={renderContacts}
           removeContacts={this.removeContacts}
         />
       </div>
