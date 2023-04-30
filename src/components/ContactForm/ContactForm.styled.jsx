@@ -17,10 +17,7 @@ export const LabelStyled = styled.label`
 export const InputStyled = styled.input`
   margin-bottom: 10px;
   padding: 5px;
-  font-size: 20px;
-  /* &:last-child{
-    margin-bottom: 20px; */
-  }
+  font-size: 20px;  
 `;
 
 export const BtnStyled = styled.button`
