@@ -8,7 +8,6 @@ import {
   BtnStyled,
 } from './ContactForm.styled';
 
-
 class ContactForm extends Component {
   state = {
     name: '',
@@ -22,7 +21,16 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addContacts({...this.state, id: nanoid() });
+    if (
+      this.props.contacts.some(
+        el => el.name.toLowerCase() === this.state.name.toLowerCase()
+      )
+    ) {
+      e.target.reset();
+      return alert(`${this.state.name} is already in contacts.`);
+    }
+    this.props.addContacts({ ...this.state, id: nanoid() });
+    e.target.reset();
   };
 
   render() {
@@ -36,7 +44,6 @@ class ContactForm extends Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            //   value={value.name}
             onChange={this.handleChange}
           />
         </LabelStyled>
@@ -47,7 +54,7 @@ class ContactForm extends Component {
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            //   required
+            required
             onChange={this.handleChange}
           />
           <BtnStyled type="submit">Add contact</BtnStyled>

@@ -1,10 +1,10 @@
 import { InputStyled } from "components/ContactForm/ContactForm.styled";
 
-const Filter = () => {
+const Filter = ({ filterContacts, filter }) => {
   return (
     <>
       <h3>Find contacts by name</h3>
-      <InputStyled type="text" />
+      <InputStyled onChange={filterContacts} value={filter} type="text" />
     </>
   );
 };
