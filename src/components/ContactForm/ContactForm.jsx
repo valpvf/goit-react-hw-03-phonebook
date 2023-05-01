@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 import {
   FormStyled,
@@ -20,16 +20,8 @@ class ContactForm extends Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault();
-    if (
-      this.props.contacts.some(
-        el => el.name.toLowerCase() === this.state.name.toLowerCase()
-      )
-    ) {
-      e.target.reset();
-      return alert(`${this.state.name} is already in contacts.`);
-    }
-    this.props.addContacts({ ...this.state, id: nanoid() });
+    e.preventDefault();    
+    this.props.addContacts(this.state);
     e.target.reset();
   };
 
@@ -63,5 +55,10 @@ class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+};
 
 export default ContactForm;
