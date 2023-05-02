@@ -20,7 +20,7 @@ class ContactForm extends Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault();    
+    e.preventDefault();
     this.props.addContacts(this.state);
     e.target.reset();
   };
@@ -57,8 +57,7 @@ class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  handleSubmit: PropTypes.func,
-  handleChange: PropTypes.func,
+  addContacts: PropTypes.func,
 };
 
 export default ContactForm;
